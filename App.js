@@ -9,6 +9,8 @@ import ListScreen from "./src/screens/ListScreen";
 import Imagescreen from "./src/screens/ImageScreen";
 import CounterScreen from "./src/screens/CounterScreen";
 import Namescreen from "./src/screens/NameScreen";
+import ColorScreen from "./src/screens/ColorScreen";
+import ColorAdjuster from "./src/screens/ColorAdjuster";
 
 // import Expo Font module 
 // import useFonts hook  
@@ -89,8 +91,9 @@ const navigator = createStackNavigator(
     List: ListScreen,
     Images: Imagescreen,
     Counter: CounterScreen,
-    Name: Namescreen
-
+    Name: Namescreen,
+    Colors: ColorScreen,
+    Adjustor: ColorAdjuster
   },
   {
     initialRouteName: "Home",

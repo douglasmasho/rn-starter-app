@@ -7,11 +7,11 @@ const Counterscreen = () => {
     const [counter, setCounter] = useState(0);
   useKeepAwake();
   const increment = ()=>{
-      setCounter(prevCount=>++prevCount);
+      setCounter(prevCount=>prevCount+1);
       console.log("increment")
   }
   const decrement = ()=>{
-    setCounter(prevCount=>--prevCount)
+    setCounter(prevCount=>prevCount-1)
 }
     return (
         <View >

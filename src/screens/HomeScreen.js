@@ -24,6 +24,7 @@ const HomeScreen = ({ navigation: { navigate } }) => {
           Go to Image Screen
         </Button>
       </View>
+      
       <Text style={[styles.sectionHeader]}>Let's revise state!</Text>
       <View style={styles.margin}>
         <Button style={styles.button} onPress={() => navigate("Counter")}>
@@ -33,6 +34,16 @@ const HomeScreen = ({ navigation: { navigate } }) => {
       <View style={styles.margin}>
         <Button style={styles.button} onPress={() => navigate("Name")}>
           Go to Name Shower!
+        </Button>
+      </View>
+      <View style={styles.margin}>
+        <Button style={styles.button} onPress={() => navigate("Colors")}>
+          Go to Color Screen!
+        </Button>
+      </View>
+      <View style={styles.margin}>
+        <Button style={styles.button} onPress={() => navigate("Adjustor")}>
+          Go to Color Adjustor!
         </Button>
       </View>
     </View>
