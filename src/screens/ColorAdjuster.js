@@ -1,78 +1,93 @@
-import React, {useState, useEffect} from "react";
+import React, {useReducer} from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { Button } from "native-base";
 import { useKeepAwake } from "expo-keep-awake";
 import Adjustor from "../components/Adjustor";
 import ColorBlock from "../components/ColorBlock";
-const ColorAdjuster = () => {
-  useKeepAwake();
-  const [redAmount, setRedAmount] = useState(0);
-  const [greenAmount, setGreenAmount] = useState(0);
-  const [blueAmount, setBlueAmount] = useState(0);
 
-  const adjustColor = (color, operation)=>{
-      switch(color){
-          case "red": 
-             switch(operation){
-               case "more": 
-               
-               break;
-               case "less": 
-              
-             }
-          break;
-          case "green": 
-             switch(operation){
-               case "more": 
-              
-               break;
-               case "less": 
-              
-             }
-          break;
-          case "blue": 
-          switch(operation){
-            case "more": 
-            
-            break;
-            case "less": 
-            
-          }
-       break;    
-      }
+//must always return state
+const reducer = (state, action)=>{
+  //state === {red:number, green:number, blue: number}
+  //action === {type: "red" || "green" || "blue", amount: 15 || -15}
+  // return {...state, [action.type]: state[action.type] + action.amount}
+
+  switch(action.type){
+    case "red":
+      return {...state, red: state.red + action.amount}
+    case "green":
+      return {...state, green: state.green + action.amount}
+    case "blue":
+      return {...state, blue: state.blue + action.amount}
+    default: 
+    return state
   }
+};
+
+const ColorAdjuster = () => {
+  
+
+
+  //first arg=> reducer argument
+  //second arg=> initial state value
+  const [state, dispatch] = useReducer(reducer, {red: 0, green: 0, blue: 0});
+  console.log(state);
+
+
+  useKeepAwake();
+  // const [redAmount, setRedAmount] = useState(0);
+  // const [greenAmount, setGreenAmount] = useState(0);
+  // const [blueAmount, setBlueAmount] = useState(0);
+
 
   const moreRed=()=>{
-    if(redAmount < 255){
-      setRedAmount(prevAmount=>prevAmount+4);
+    if(state.red < 255){
+      dispatch({
+        type: "red",
+        amount: 15
+      })
      } 
   }
 
   const lessRed=()=>{
-    if(redAmount > 0){
-      setRedAmount(prevAmount=>prevAmount-4);
+    if(state.red > 0){
+      dispatch({
+        type: "red",
+        amount: -15
+      })
      } 
   }
   const moreGreen=()=>{
-    if(greenAmount < 255){
-      setGreenAmount(prevAmount=>prevAmount+4);
+    if(state.green < 255){
+      dispatch({
+        type: "green",
+        amount: 15
+      })
      } 
   }
   
   const lessGreen=()=>{
-    if(greenAmount > 0){
-      setGreenAmount(prevAmount=>prevAmount-4);
+    if(state.green > 0){
+      dispatch({
+        type: "green",
+        amount: -15
+      })
      } 
   }
 
   const moreBlue=()=>{
-    if(blueAmount < 255){
-      setBlueAmount(prevAmount=>prevAmount+4);
+    if(state.blue < 255){
+      dispatch({
+        type: "blue",
+        amount: 15
+      })
      } 
   }
   const lessBlue=()=>{
-    if(blueAmount > 0){
-      setBlueAmount(prevAmount=>prevAmount-4);
+    if(state.blue > 0){
+      dispatch({
+        type: "blue",
+        amount: -15
+      })
      } 
   }
 
@@ -96,7 +111,7 @@ const ColorAdjuster = () => {
         <Adjustor text="Less Blue!" color="blue" callback={lessBlue} />
       </View>
       <View style={styles.center}>
-        <ColorBlock color={`rgb(${redAmount}, ${greenAmount}, ${blueAmount})`}/>
+        <ColorBlock color={`rgb(${state.red}, ${state.green}, ${state.blue})`}/>
       </View>
     </View>
   );
