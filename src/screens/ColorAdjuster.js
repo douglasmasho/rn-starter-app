@@ -9,18 +9,18 @@ import ColorBlock from "../components/ColorBlock";
 const reducer = (state, action)=>{
   //state === {red:number, green:number, blue: number}
   //action === {type: "red" || "green" || "blue", amount: 15 || -15}
-  // return {...state, [action.type]: state[action.type] + action.amount}
+  return {...state, [action.type]: state[action.type] + action.amount}
 
-  switch(action.type){
-    case "red":
-      return {...state, red: state.red + action.amount}
-    case "green":
-      return {...state, green: state.green + action.amount}
-    case "blue":
-      return {...state, blue: state.blue + action.amount}
-    default: 
-    return state
-  }
+  // switch(action.type){
+  //   case "red":
+  //     return {...state, red: state.red + action.amount}
+  //   case "green":
+  //     return {...state, green: state.green + action.amount}
+  //   case "blue":
+  //     return {...state, blue: state.blue + action.amount}
+  //   default: 
+  //   return state
+  // }
 };
 
 const ColorAdjuster = () => {
